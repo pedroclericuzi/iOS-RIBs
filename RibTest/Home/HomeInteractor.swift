@@ -42,8 +42,4 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
         super.willResignActive()
         // TODO: Pause any business logic.
     }
-    
-    func viewDidAppear() {
-        
-    }
 }

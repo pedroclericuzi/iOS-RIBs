@@ -26,8 +26,18 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         interactor.router = self
     }
     
+    override func didLoad() {
+        super.didLoad()
+        print("Testeeeee")
+        routeToHome()
+        //routeToLoggedOut()
+    }
+    
+    private var homeRouting: ViewableRouting?
+    
     func routeToHome() {
         let home = homeBuildable.build(withListener: interactor)
+        self.homeRouting = home
         attachChild(home)
         viewController.present(viewController: home.viewControllable)
     }

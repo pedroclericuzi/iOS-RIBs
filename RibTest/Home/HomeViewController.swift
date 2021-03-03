@@ -13,17 +13,17 @@ protocol HomePresentableListener: class {
     // TODO: Declare properties and methods that the view controller can invoke to perform
     // business logic, such as signIn(). This protocol is implemented by the corresponding
     // interactor class.
-    func viewDidAppear()
 }
 
 final class HomeViewController: UIViewController, HomePresentable, HomeViewControllable {
+    
     var listener: HomePresentableListener?
     private var targetViewController: ViewControllable?
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.listener?.viewDidAppear()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //versionLabel.text = "v\(AppData.appVersion) \(AppData.env)"
+        //self.view.backgroundColor = "red"
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -31,10 +31,20 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     }
     
     // MARK: - RootViewControllable
-    
-    func present(viewController: ViewControllable) {
+    func present(viewController: ViewControllable?) {
         self.targetViewController = viewController
-        self.presentTargetViewController()
+        if presentedViewController != nil {
+            dismiss(animated: true) { [weak self] in
+                guard let this = self else { return }
+                if this.targetViewController != nil {
+                    this.presentTargetViewController()
+                } else {
+                    print("nada")
+                }
+            }
+        } else {
+            presentTargetViewController()
+        }
     }
     
     private func presentTargetViewController() {

@@ -30,7 +30,7 @@ final class HomeBuilder: Builder<HomeDependency>, HomeBuildable {
     }
 
     func build(withListener listener: HomeListener) -> HomeRouting {
-        let component = HomeComponent(dependency: dependency)
+        //let component = HomeComponent(dependency: dependency)
         let viewController = HomeViewController()
         let interactor = HomeInteractor(presenter: viewController)
         interactor.listener = listener

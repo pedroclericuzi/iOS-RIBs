@@ -51,10 +51,6 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
     }
     
     private func redirectToInitialRIB() {
-        startApplication()
-    }
-    
-    private func startApplication() {
         router?.routeToHome()
     }
     
